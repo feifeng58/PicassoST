@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+
+<head>
+
+	<ng-include src="'head.html'"></ng-include>
+
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800">
+
+	<!-- Plugins -->
+	<link rel="stylesheet" type="text/css" href="css/plugins-css.css" />
+
+	<!-- revoluation -->
+	<!--<link rel="stylesheet" type="text/css" href="revolution/css/settings.css" media="screen" />-->
+
+	<!-- Typography -->
+	<link rel="stylesheet" type="text/css" href="css/typography.css" />
+
+	<!-- Shortcodes -->
+	<link rel="stylesheet" type="text/css" href="css/shortcodes/shortcodes.css" />
+
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<!-- Responsive -->
+	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="css/new.css" />
+	<link rel="stylesheet" type="text/css" href="css/vangogh.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<script src="libraries/p5.min.js"></script>
+	<script src="libraries/p5.dom.min.js"></script>
+	<script src="libraries/ml5.min.js"></script>
+
+	<script src="js/sketch.js"></script>
+	<script src="js/GA-signature.js"></script>
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+		<!--=================================
+ preloader -->
+
+		<div id="pre-loader">
+			<img src="images/pre-loader/loader-01.svg" alt="" width="150" height="150">
+		</div>
+
+		<!--=================================
+ preloader -->
+
+		<!--=================================
+ header -->
+		<ng-include src="'header.html'"></ng-include>
+		<!--=================================
+ header -->
+		<section class="page-title pt-50 pb-50 bg-overlay-black-40 parallax" data-jarallax='{"speed": 0.6}'
+			style="background-image: url(images/banner.png); width: 1920px; height: 200px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12" style="vertical-align: center;">
+						<div class="page-title-name">
+							<h1>Picasso Style Transfer</h1>
+							<p>利用人工智慧的風格轉換技術，在現代場景中重新呈現畢卡索的繪畫風格。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="white-bg">
+			<div class="container">
+				<div class="row">
+					<div id="learning-container" class="col-lg-4 col-md-12">
+						<div class="pt-20 pb-10">
+							<button type="button" class="button btn-circle mr-10 disable">1</button> Choose style
+						</div>
+						<!--     <div class="mg-250"></div>-->
+						<div style="height: 290px; overflow: hidden; ">
+							<div class="style-name-box"><span id="style-name">a muse 1935</span></div>
+							<div class="center-container1 ">
+								<div class="style-img-box">
+									<img id="style-img" src='images/a_muse.jpg' width="100%">
+								</div>
+							</div>
+						</div>
+						<!--畢卡索畫作內容-->
+						<div class="photo-scrollbar">
+							<div style="overflow-y: scroll; overflow-x: hidden; width: 740px; height: 80px;">
+								<ul>
+									<li>
+										<img class="image" id="a_muse" src='images/a_muse.jpg' alt="A muse 1935"
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;" />
+
+									</li>
+									<li>
+										<img class="image" id="bullfight" src='images/bullfight.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Bullfight 1934" />
+									</li>
+									<li>
+										<img class="image" id="crucifixion" src='images/crucifixion.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Crucifixion 1930" />
+									</li>
+									<li>
+										<img class="image" id="girl_in_front_of_mir"
+											src='images/girl_in_front_of_mir.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Girl in front of mir 1932" />
+									</li>
+									<li>
+										<img class="image" id="boy_with_a_pipe" src='images/boy_with_a_pipe.jpg'
+											alt="Boy with a pipe"
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;" />
+									</li>
+									<li>
+										<img class="image" id="the_rescue" src='images/the_rescue.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="The rescue 1932" />
+									</li>
+									<li>
+										<img class="image" id="Les_Demoiselles_d_Avignon"
+											src='images/Les_Demoiselles_d_Avignon.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Les Demoiselles d'Avignon" />
+									</li>
+									<li>
+										<img class="image" id="tomato_plant" src='images/tomato_plant.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Tomato plant 1944" />
+									</li>
+									<li>
+										<img class="image" id="Sleeping_Peasants" src='images/Sleeping_Peasants.jpg'
+											onclick="updateStyleImg(this); document.getElementById('style-name').innerText = this.alt;"
+											alt="Sleeping Peasants" />
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-lg-4 col-md-12 input-container">
+						<div class="pt-20 pb-10">
+							<button type="button" class="button btn-circle mr-10 disable">2</button> Select content
+						</div>
+						<div class="tab tab-border ">
+							<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+								<!--第二個Tabs輸入方式-->
+								<!--<li class="nav-item">
+								 <a class="nav-link active show" id="home-04-tab" data-toggle="tab" href="#example"
+										role="tab" aria-controls="example" aria-selected="true">Example</a> 
+								</li>	-->
+								<li class="nav-item">
+									<a class="nav-link active show" id="profile-04-tab" data-toggle="tab" href="#upload"
+										role="tab" aria-controls="upload" aria-selected="true">Upload Photo</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="webcam-tab" data-toggle="tab" href="#webcam" role="tab"
+										aria-controls="portfolio-04" aria-selected="false">Webcam</a>
+								</li>
+							</ul>
+							<div class="tab-content pt-0 pr-0 pl-0 pb-0" id="example-tab">
+
+
+								<div class="tab-pane fade active show border" id="upload" role="tabpanel"
+									aria-labelledby="upload-tab">
+									<div class="center-container">
+										<img id="input-img1" src='images/picture.png' />
+										<div id="input-source1" class="reverse-img"></div>
+									</div>
+									<!--                <div class="mg-200"></div>-->
+
+									<div class="style-container uploadimgbtn-box">
+										<input id="uploader" name="inputImgFile" type="file" accept="image/*">
+										<div class="link" onclick="uploadImg()"><i class="fa fa-upload"></i> Upload an
+											image</div>
+										<!--      <div class="link" onclick="useWebcam()">Use my webcam</div>-->
+									</div>
+								</div>
+
+
+								<div class="tab-pane fade border" id="webcam" role="tabpanel"
+									aria-labelledby="webcam-tab">
+									<div class="center-container">
+										<img id="input-img2" src='images/picture.png' />
+										<div id="input-source2" class="reverse-img"></div>
+									</div>
+									<div class="style-container uploadimgbtn-box">
+										<!--      <input id="uploader" name="inputImgFile" type="file" accept="image/*"> -->
+										<!--      <div class="link" onclick="uploadImg()">Upload an image</div>-->
+										<div class="link" onclick="useWebcam()"><i class="fa fa-camera"></i> Use my
+											webcam</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<div class="col-lg-4 col-md-12 input-container">
+						<div class="pt-20 pb-10">
+							<button type="button" class="button btn-circle mr-10 disable">3</button> Stylize (Style
+							Similarity)
+						</div>
+						<div class="tab tab-border ">
+							<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active show" id="home-04-tab" data-toggle="tab" href="#result1"
+										role="tab" aria-controls="example" aria-selected="true"
+										onclick="onPredictClick()">Higher</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="profile-04-tab" data-toggle="tab" href="#result2" role="tab"
+										aria-controls="upload" aria-selected="false"
+										onclick="onPredictClick1()">Medium</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="webcam-tab" data-toggle="tab" href="#result3" role="tab"
+										aria-controls="portfolio-04" aria-selected="false"
+										onclick="onPredictClick2()">Lower</a>
+								</li>
+							</ul>
+							<div class="tab-content pt-0 pr-0 pl-0 pb-25 border" id="example-tab">
+
+								<div class="tab-pane fade active show" id="result1" role="tabpanel"
+									aria-labelledby="example-tab">
+									<div id="output-img-container"></div>
+									<div class="style-container pt-15">
+										<button class="button button-border black download-btn" onclick="saveimgas()"><i
+												class="fa fa-download"></i></button>
+										<!--				<button class="button btn-block mb-10" onclick="onPredictClick()">Transfer</button>-->
+									</div>
+								</div>
+
+								<div class="tab-pane fade" id="result2" role="tabpanel" aria-labelledby="upload-tab">
+									<div id="output-img-container1"></div>
+									<div class="style-container pt-15">
+										<button class="button button-border black download-btn" onclick="saveimgas()"><i
+												class="fa fa-download"></i></button>
+										<!--				<button class="button btn-block mb-10" onclick="onPredictClick1()">Transfer</button>-->
+									</div>
+								</div>
+
+
+								<div class="tab-pane fade" id="result3" role="tabpanel" aria-labelledby="webcam-tab">
+									<div id="output-img-container2"></div>
+									<div class="style-container pt-15">
+										<button class="button button-border black download-btn" onclick="saveimgas()"><i
+												class="fa fa-download"></i></button>
+										<!--				<button class="button btn-block mb-10" onclick="onPredictClick2()">Transfer</button>-->
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<!--=================================
+
+
+ jquery -->
+
+		<!-- jquery -->
+		<script src="js/jquery-3.3.1.min.js"></script>
+
+		<!-- plugins-jquery -->
+		<script src="js/plugins-jquery.js"></script>
+
+		<!-- plugin_path -->
+		<script>
+			var plugin_path = 'js/';
+		</script>
+
+		<!-- REVOLUTION JS FILES -->
+		<!--
+<script src="revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="revolution/js/jquery.themepunch.revolution.min.js"></script>
+-->
+
+		<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+		<!--<script src="revolution/js/extensions/revolution.extension.actions.min.js"></script>-->
+		<!--
+<script src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
+-->
+		<!-- revolution custom -->
+		<!--<script src="revolution/js/revolution-custom.js"></script> -->
+
+		<!-- custom -->
+		<script src="js/custom.js"></script>
+		<script>
+		//$(document).ready( function() {
+		//	let out = ['#output-img-container','#output-img-container1','#output-img-container2'];
+		//
+		//	for (var i=0; i<3; i++) {
+		//		$(out[i]).hover(
+		//			function() {
+		//				$(this).animate({ 'zoom': 1.2 }, 400);
+		//			},
+		//			function() {
+		//				$(this).animate({ 'zoom': 1 }, 400);
+		//			});
+		//	}
+		//
+		//});
+		</script>
+</body>
+
+</html>
